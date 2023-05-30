@@ -1,4 +1,5 @@
-﻿using PARTS_ORDER.ViewModel;
+﻿using PARTS_ORDER.Database;
+using PARTS_ORDER.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,10 +22,17 @@ namespace PARTS_ORDER
     /// </summary>
     public partial class MainWindow : Window
     {
+        private DatabaseFunctions _dbFunctions;
         public MainWindow()
         {
             InitializeComponent();
             DataContext = new MainViewModel();
+            Loaded += Load;
+        }
+
+        private void Load(object sender, RoutedEventArgs e)
+        {
+            //cmbManufacturer.Items.Add(_dbFunctions.GetManufacturers());
         }
     }
 }

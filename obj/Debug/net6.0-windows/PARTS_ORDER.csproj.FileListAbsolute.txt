@@ -58,3 +58,4 @@ C:\Users\USER\source\repos\PARTS_ORDER\bin\Debug\net6.0-windows\runtimes\win\lib
 C:\Users\USER\source\repos\PARTS_ORDER\obj\Debug\net6.0-windows\PARTS_ORDER.csproj.CopyComplete
 C:\Users\USER\source\repos\PARTS_ORDER\obj\Debug\net6.0-windows\View\Login.g.cs
 C:\Users\USER\source\repos\PARTS_ORDER\obj\Debug\net6.0-windows\View\Login.baml
+C:\Users\USER\source\repos\PARTS_ORDER\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs

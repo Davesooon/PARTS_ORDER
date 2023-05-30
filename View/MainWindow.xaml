@@ -3,19 +3,40 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PARTS_ORDER"
+        xmlns:custns="clr-namespace:PARTS_ORDER.ViewModel"
         mc:Ignorable="d"
-        Title="PARTS_ORDER" Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
-    <Grid>
-        <TextBox HorizontalAlignment="Left" Margin="35,30,0,0" TextWrapping="Wrap" Text="{Binding ScreenVal}" VerticalAlignment="Top" Width="120"/>
-        <DataGrid d:ItemsSource="{Binding GridValues}" Margin="452,10,10,10">
+        Title="PARTS_ORDER" Height="450" Width="818" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Loaded="Load">
+    <Window.Resources>
+        <custns:MainViewModel
+            x:Key="mainvm"/>
+        <custns:LoginViewModel
+            x:Key="loginvm"/>
+    </Window.Resources>
+    <Canvas>
+        <TextBox HorizontalAlignment="Left" Margin="218,62,0,0" TextWrapping="Wrap" Text="{Binding ScreenVal}" VerticalAlignment="Top" Width="145" Height="22"/>
+        <DataGrid Height="383" Canvas.Left="414" Canvas.Top="10" HorizontalAlignment="Left" VerticalAlignment="Center" Width="371">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="MANUFACTURER"/>
-                <DataGridTextColumn Header="NAME"/>
-                <DataGridTextColumn Header="COST"/>
-                <DataGridTextColumn Header="TRANSPORT"/>
+                <DataGridTextColumn Header="ID" Width="30"/>
+                <DataGridTextColumn Header="MANUFACTURER" Width="120"/>
+                <DataGridTextColumn Header="NAME" Width="100"/>
+                <DataGridTextColumn Header="TRANSPORT DATE" Width="140"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Label Content="Part name" HorizontalAlignment="Left" Margin="218,36,0,0" VerticalAlignment="Top"/>
+        <Label Content="Manufacturer" HorizontalAlignment="Left" Margin="37,36,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cmbManufacturer" DataContext="{Binding Manufacturer, Source={StaticResource mainvm}}" HorizontalAlignment="Left" Margin="37,62,0,0" VerticalAlignment="Top" Width="145" Height="22"/>
+        <Border BorderThickness="1" Height="61" Canvas.Left="10" Canvas.Top="36" Width="390">
+            <Border.BorderBrush>
+                <SolidColorBrush Color="Black" Opacity="0.5"/>
+            </Border.BorderBrush>
+        </Border>
+        <Label Content="Order panel" FontSize="12" HorizontalAlignment="Left" Margin="171,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Border BorderThickness="1" Height="190" Canvas.Left="10" Canvas.Top="180" Width="390" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <Border.BorderBrush>
+                <SolidColorBrush Color="Black" Opacity="0.5"/>
+            </Border.BorderBrush>
+        </Border>
+        <Label Content="Management panel" FontSize="12" FontWeight="Bold" HorizontalAlignment="Left" Margin="150,149,0,0" VerticalAlignment="Top"/>
 
-    </Grid>
+    </Canvas>
 </Window>

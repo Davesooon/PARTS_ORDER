@@ -13,7 +13,7 @@ namespace PARTS_ORDER.ViewModel
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        private PARTS_ORDER_DB _dbContext;
+        private DatabaseFunctions _dbFun;
         public event PropertyChangedEventHandler? PropertyChanged;
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -23,29 +23,20 @@ namespace PARTS_ORDER.ViewModel
 
         public MainViewModel()
         {
-            new Login();
         }
 
-        private string _screenVal;
-        public string ScreenVal
+        private List<string> _manufacturer;
+        public List<string> Manufacturer
         {
-            get { return _screenVal; }
+            get { return _manufacturer; }
             set
             {
-                _screenVal = value;
+                _manufacturer = value;
+                _dbFun.GetManufacturers();
                 OnPropertyChanged();
             }
         }
 
-        private string _gridValues;
-        public string GridValues
-        {
-            get { return _gridValues; }
-            set
-            { 
-                _gridValues = value;
-                OnPropertyChanged();
-            }
-        }
+
     }
 }
