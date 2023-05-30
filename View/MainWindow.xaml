@@ -1,0 +1,21 @@
+﻿<Window x:Class="PARTS_ORDER.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PARTS_ORDER"
+        mc:Ignorable="d"
+        Title="PARTS_ORDER" Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <TextBox HorizontalAlignment="Left" Margin="35,30,0,0" TextWrapping="Wrap" Text="{Binding ScreenVal}" VerticalAlignment="Top" Width="120"/>
+        <DataGrid d:ItemsSource="{Binding GridValues}" Margin="452,10,10,10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="MANUFACTURER"/>
+                <DataGridTextColumn Header="NAME"/>
+                <DataGridTextColumn Header="COST"/>
+                <DataGridTextColumn Header="TRANSPORT"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Window>
