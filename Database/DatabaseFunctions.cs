@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace PARTS_ORDER.Database
 {
-    public class DatabaseFunctions
+    public class DatabaseFunctions : IDatabaseFunctions
     {
-        internal Task<IEnumerable<string>> GetManufacturers()
+        Task<IEnumerable<string>> IDatabaseFunctions.GetManufacturers()
         {
             using (var partsdb = new PARTS_ORDER_DB())
             {

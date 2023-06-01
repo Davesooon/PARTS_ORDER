@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PARTS_ORDER.Database
 {
-    public class PARTS_ORDER_DB : DbContext
+    public class DatabaseInitializer : DbContext, IDatabaseInitializer
     {
         private string _connString = "Server=(localdb)\\mssqllocaldb; Database=PARTS_ORDER; Trusted_Connection=True;";
 
@@ -51,6 +51,42 @@ namespace PARTS_ORDER.Database
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(_connString);
+        }
+
+        public async Task SeedData()
+        {
+            using (var partsOrderContext = new DatabaseInitializer())
+            {
+                if (!partsOrderContext.manufacturers.Any())
+                {
+                    var manufactureres = new List<MANUFACTURERS>()
+                    {
+                        new MANUFACTURERS()
+                        {
+                            ID = 1,
+                            NAME = "SIEMENS",
+                            PRODUCT_KEY = 2010307
+                        },
+
+                        new MANUFACTURERS()
+                        {
+                            ID = 2,
+                            NAME = "HONEYWELL",
+                            PRODUCT_KEY = 6042009
+                        },
+
+                        new MANUFACTURERS()
+                        {
+                            ID = 3,
+                            NAME = "ZEBRA",
+                            PRODUCT_KEY = 0928045
+                        }
+                    };
+
+                    partsOrderContext.AddRange(manufactureres);
+                    await partsOrderContext.SaveChangesAsync();
+                }
+            }
         }
     }
 }
