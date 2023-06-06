@@ -13,8 +13,8 @@
             x:Key="loginvm"/>
     </Window.Resources>
     <Canvas>
-        <TextBox HorizontalAlignment="Left" Margin="218,62,0,0" TextWrapping="Wrap" Text="{Binding ScreenVal}" VerticalAlignment="Top" Width="145" Height="22"/>
-        <DataGrid Height="383" Canvas.Left="414" Canvas.Top="10" HorizontalAlignment="Left" VerticalAlignment="Center" Width="371">
+        <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding ScreenVal}" VerticalAlignment="Top" Width="145" Height="22" IsEnabled="True" Background="White" Canvas.Left="37" Canvas.Top="115"/>
+        <DataGrid Height="383" Canvas.Left="414" Canvas.Top="10" HorizontalAlignment="Left" VerticalAlignment="Center" Width="371" SelectionChanged="DataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Width="30"/>
                 <DataGridTextColumn Header="MANUFACTURER" Width="120"/>
@@ -22,28 +22,36 @@
                 <DataGridTextColumn Header="TRANSPORT DATE" Width="140"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="Part name" HorizontalAlignment="Left" Margin="218,36,0,0" VerticalAlignment="Top"/>
+        <Label Content="Part name" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="37" Canvas.Top="89"/>
         <Label Content="Manufacturer" HorizontalAlignment="Left" Margin="37,36,0,0" VerticalAlignment="Top"/>
+        <Label Content="Number of units" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="37" Canvas.Top="137"/>
+        <Label Content="Payment status" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="227" Canvas.Top="89"/>
+        <Label Content="Order comment" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="227" Canvas.Top="137"/>
+        <Label Content="Transport form" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="227" Canvas.Top="36"/>
         <ComboBox x:Name="cmbManufacturer" DataContext="{Binding Manufacturer, Source={StaticResource mainvm}}" HorizontalAlignment="Left" Margin="37,62,0,0" VerticalAlignment="Top" Width="145" Height="22"/>
-        <Border BorderThickness="1" Height="116" Canvas.Left="10" Canvas.Top="36" Width="390" HorizontalAlignment="Center" VerticalAlignment="Top">
+        <Border BorderThickness="1" Height="237" Canvas.Left="14" Canvas.Top="36" Width="390" HorizontalAlignment="Left" VerticalAlignment="Center">
             <Border.BorderBrush>
                 <SolidColorBrush Color="Black" Opacity="0.5"/>
             </Border.BorderBrush>
         </Border>
+        <TextBox TextWrapping="Wrap" TextChanged="TextBox_TextChanged" Canvas.Left="37" Canvas.Top="163" HorizontalAlignment="Left" VerticalAlignment="Center" Width="145" Height="22"/>
+        <TextBox TextWrapping="Wrap" TextChanged="TextBox_TextChanged" Canvas.Left="227" Canvas.Top="163" HorizontalAlignment="Left" VerticalAlignment="Center" Width="145" Height="22"/>
+        <TextBox TextWrapping="Wrap" TextChanged="TextBox_TextChanged" Canvas.Left="227" Canvas.Top="115" HorizontalAlignment="Left" VerticalAlignment="Top" Width="145" Height="22"/>
+        <TextBox TextWrapping="Wrap" TextChanged="TextBox_TextChanged" Canvas.Left="227" Canvas.Top="62" HorizontalAlignment="Left" VerticalAlignment="Top" Width="145" Height="22"/>
         <Label Content="Order panel" FontSize="12" HorizontalAlignment="Left" Margin="171,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Border BorderThickness="1" Height="191" Canvas.Left="14" Canvas.Top="202" Width="390" HorizontalAlignment="Center" VerticalAlignment="Top">
+        <Border BorderThickness="1" Height="72" Canvas.Left="14" Canvas.Top="321" Width="390" HorizontalAlignment="Center" VerticalAlignment="Top">
             <Border.BorderBrush>
                 <SolidColorBrush Color="Black" Opacity="0.5"/>
             </Border.BorderBrush>
         </Border>
-        <Button x:Name="btnLogout" Content="Logout" Height="41" Width="84" RenderTransformOrigin="0.047,0.295" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnLogout_Click" Canvas.Left="304" Canvas.Top="337"/>
-        <Label Content="Management panel" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="150" Canvas.Top="171"/>
-        <TextBox Canvas.Left="28" TextWrapping="Wrap"  x:Name="tbUserName" Text="{Binding ScreenVal}" Canvas.Top="230" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False"/>
-        <Label Content="User" Canvas.Left="71" Canvas.Top="204" HorizontalAlignment="Left" VerticalAlignment="Top" Width="34"/>
-        <Label Content="Role" Canvas.Left="217" Canvas.Top="204" HorizontalAlignment="Left" VerticalAlignment="Top" Width="38" RenderTransformOrigin="0.481,0.515"/>
-        <TextBox Canvas.Left="171" TextWrapping="Wrap" Text="{Binding ScreenVal}" Canvas.Top="230" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False"/>
-        <Button Content= "Add part" Canvas.Left="304" Canvas.Top="105" Height="31" Width="82" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <DatePicker x:Name="TransportDate" Canvas.Left="37" Canvas.Top="105"/>
+        <Button x:Name="btnLogout" Content="Logout" Height="33" Width="69" RenderTransformOrigin="0.047,0.295" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnLogout_Click" Canvas.Left="319" Canvas.Top="345"/>
+        <Label Content="Management panel" FontSize="12" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="30" Canvas.Top="290"/>
+        <TextBox Canvas.Left="29" TextWrapping="Wrap"  x:Name="tbUserName" Text="{Binding ScreenVal}" Canvas.Top="358" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top" Background ="LightGray" IsEnabled="False"/>
+        <Label Content="User" Canvas.Left="72" Canvas.Top="332" HorizontalAlignment="Left" VerticalAlignment="Top" Width="34"/>
+        <Label Content="Role" Canvas.Left="218" Canvas.Top="332" HorizontalAlignment="Left" VerticalAlignment="Top" Width="38" RenderTransformOrigin="0.481,0.515"/>
+        <TextBox Canvas.Left="172" TextWrapping="Wrap" Text="{Binding ScreenVal}" Canvas.Top="358" Width="127" HorizontalAlignment="Left" VerticalAlignment="Center" Background="LightGray" IsEnabled="False"/>
+        <Button Content= "Add part" Canvas.Left="258" Canvas.Top="217" Height="31" Width="82" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <DatePicker x:Name="TransportDate" Canvas.Left="37" Canvas.Top="224" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
     </Canvas>
 </Window>
