@@ -34,5 +34,15 @@ namespace PARTS_ORDER
         {
             //cmbManufacturer.Items.Add(_dbFunctions.GetManufacturers());
         }
+
+        private void btnLogout_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void tbUserName_Copy_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

@@ -25,19 +25,25 @@
         <Label Content="Part name" HorizontalAlignment="Left" Margin="218,36,0,0" VerticalAlignment="Top"/>
         <Label Content="Manufacturer" HorizontalAlignment="Left" Margin="37,36,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="cmbManufacturer" DataContext="{Binding Manufacturer, Source={StaticResource mainvm}}" HorizontalAlignment="Left" Margin="37,62,0,0" VerticalAlignment="Top" Width="145" Height="22"/>
-        <Border BorderThickness="1" Height="61" Canvas.Left="10" Canvas.Top="36" Width="390">
+        <Border BorderThickness="1" Height="116" Canvas.Left="10" Canvas.Top="36" Width="390" HorizontalAlignment="Center" VerticalAlignment="Top">
             <Border.BorderBrush>
                 <SolidColorBrush Color="Black" Opacity="0.5"/>
             </Border.BorderBrush>
         </Border>
         <Label Content="Order panel" FontSize="12" HorizontalAlignment="Left" Margin="171,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Border BorderThickness="1" Height="213" Canvas.Left="15" Canvas.Top="180" Width="390" HorizontalAlignment="Left" VerticalAlignment="Center">
+        <Border BorderThickness="1" Height="191" Canvas.Left="14" Canvas.Top="202" Width="390" HorizontalAlignment="Center" VerticalAlignment="Top">
             <Border.BorderBrush>
                 <SolidColorBrush Color="Black" Opacity="0.5"/>
             </Border.BorderBrush>
-            <Button Content="Logout" Height="41" Width="84" RenderTransformOrigin="0.047,0.295" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="295,161,0,0"/>
         </Border>
-        <Label Content="Management panel" FontSize="12" FontWeight="Bold" HorizontalAlignment="Left" Margin="150,149,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnLogout" Content="Logout" Height="41" Width="84" RenderTransformOrigin="0.047,0.295" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnLogout_Click" Canvas.Left="304" Canvas.Top="337"/>
+        <Label Content="Management panel" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="150" Canvas.Top="171"/>
+        <TextBox Canvas.Left="28" TextWrapping="Wrap"  x:Name="tbUserName" Text="{Binding ScreenVal}" Canvas.Top="230" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False"/>
+        <Label Content="User" Canvas.Left="71" Canvas.Top="204" HorizontalAlignment="Left" VerticalAlignment="Top" Width="34"/>
+        <Label Content="Role" Canvas.Left="217" Canvas.Top="204" HorizontalAlignment="Left" VerticalAlignment="Top" Width="38" RenderTransformOrigin="0.481,0.515"/>
+        <TextBox Canvas.Left="171" TextWrapping="Wrap" Text="{Binding ScreenVal}" Canvas.Top="230" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False"/>
+        <Button Content= "Add part" Canvas.Left="304" Canvas.Top="105" Height="31" Width="82" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <DatePicker x:Name="TransportDate" Canvas.Left="37" Canvas.Top="105"/>
 
     </Canvas>
 </Window>

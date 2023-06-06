@@ -59,3 +59,13 @@ C:\Users\USER\source\repos\PARTS_ORDER\obj\Debug\net6.0-windows\PARTS_ORDER.cspr
 C:\Users\USER\source\repos\PARTS_ORDER\obj\Debug\net6.0-windows\View\Login.g.cs
 C:\Users\USER\source\repos\PARTS_ORDER\obj\Debug\net6.0-windows\View\Login.baml
 C:\Users\USER\source\repos\PARTS_ORDER\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
+C:\Users\patry\Desktop\projekt\PARTS_ORDER.git\obj\Debug\net6.0-windows\PARTS_ORDER.csproj.AssemblyReference.cache
+C:\Users\patry\Desktop\projekt\PARTS_ORDER.git\obj\Debug\net6.0-windows\View\Login.g.cs
+C:\Users\patry\Desktop\projekt\PARTS_ORDER.git\obj\Debug\net6.0-windows\View\MainWindow.g.cs
+C:\Users\patry\Desktop\projekt\PARTS_ORDER.git\obj\Debug\net6.0-windows\App.g.cs
+C:\Users\patry\Desktop\projekt\PARTS_ORDER.git\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
+C:\Users\patry\Desktop\projekt\PARTS_ORDER.git\obj\Debug\net6.0-windows\PARTS_ORDER_MarkupCompile.cache
+C:\Users\patry\Desktop\projekt\PARTS_ORDER.git\obj\Debug\net6.0-windows\PARTS_ORDER_MarkupCompile.lref
+C:\Users\patry\Desktop\projekt\PARTS_ORDER.git\obj\Debug\net6.0-windows\PARTS_ORDER.dll
+C:\Users\patry\Desktop\projekt\PARTS_ORDER.git\obj\Debug\net6.0-windows\refint\PARTS_ORDER.dll
+C:\Users\patry\Desktop\projekt\PARTS_ORDER.git\obj\Debug\net6.0-windows\PARTS_ORDER.pdb
