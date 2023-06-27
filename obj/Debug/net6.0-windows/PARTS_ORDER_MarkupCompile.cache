@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\patry\Desktop\projekt\PARTS_ORDER.git\obj\Debug\net6.0-windows\
+C:\Users\USER\source\repos\PARTS_ORDER\obj\Debug\net6.0-windows\
 PARTS_ORDER
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-C:\Users\patry\Desktop\projekt\PARTS_ORDER.git\App.xaml
-21463059920
+C:\Users\USER\source\repos\PARTS_ORDER\App.xaml
+3-340407688
 
-17-2127376875
-240-1897579965
-View\Login.xaml;View\MainWindow.xaml;
+20-1522941370
+241909098537
+Components\BindablePasswordBox.xaml;View\Login.xaml;View\MainWindow.xaml;
 
-True
+False
 

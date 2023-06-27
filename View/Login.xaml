@@ -4,14 +4,25 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PARTS_ORDER.View"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
+        xmlns:components="clr-namespace:PARTS_ORDER.Components"
         mc:Ignorable="d"
         Title="Login" ResizeMode="NoResize" Width="250" Height="250" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"></BooleanToVisibilityConverter>
+    </Window.Resources>
+    <Window.Visibility>
+        <Binding Path="LoginVisibility" Mode="TwoWay" Converter="{StaticResource BooleanToVisibilityConverter}" />
+    </Window.Visibility>
     <Grid>
-        <Label Content="Nazwa użytkownika" HorizontalAlignment="Center" Margin="0,24,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Center" Margin="0,50,0,0" TextWrapping="Wrap" Text="{Binding TextBoxUserText}" VerticalAlignment="Top" Width="150" Height="21"/>
-        <Label Content="Hasło" HorizontalAlignment="Center" Margin="0,91,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Center" Margin="0,117,0,0" TextWrapping="Wrap" Text="{Binding TextBoxPassText}" VerticalAlignment="Top" Width="150" Height="21"/>
-        <Button Content="ZALOGUJ" HorizontalAlignment="Center" Margin="0,159,0,0" VerticalAlignment="Top" Height="25" Width="74"/>
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="9*"/>
+            <ColumnDefinition Width="16*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Nazwa użytkownika" HorizontalAlignment="Left" Margin="68,24,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="26" Width="114"/>
+        <TextBox x:Name="tbName" HorizontalAlignment="Left" Margin="50,50,0,0" TextWrapping="Wrap" Text="{Binding TextBoxUserText}" VerticalAlignment="Top" Width="150" Height="21" Grid.ColumnSpan="2"/>
+        <Label Content="Hasło" HorizontalAlignment="Left" Margin="14,91,0,0" VerticalAlignment="Top" Grid.Column="1" Height="26" Width="40"/>
+        <Button x:Name="btnLogin" Content="ZALOGUJ" HorizontalAlignment="Left" Margin="0,159,0,0" VerticalAlignment="Top" Height="25" Width="74" Command="{Binding btnLoginCommand}" Grid.Column="1"/>
+        <components:BindablePasswordBox Password="{Binding TextBoxPassText}" Grid.ColumnSpan="2" Margin="50,117,0,0" Background="White" BorderBrush="#FF6D6D6D" BorderThickness="1,1,1,1" Height="21" VerticalAlignment="Top" Width="150" Focusable="True" IsTabStop="True" HorizontalAlignment="Left" />
     </Grid>
 </Window>

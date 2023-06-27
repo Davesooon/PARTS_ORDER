@@ -4,8 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:custns="clr-namespace:PARTS_ORDER.ViewModel"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
-        Title="PARTS_ORDER" Height="450" Width="818" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Loaded="Load">
+        Title="PARTS_ORDER" Height="450" Width="834" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closed">
+            <i:CallMethodAction MethodName="Close" TargetObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Window.Resources>
         <custns:MainViewModel
             x:Key="mainvm"/>
@@ -13,45 +20,41 @@
             x:Key="loginvm"/>
     </Window.Resources>
     <Canvas>
-        <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding ScreenVal}" VerticalAlignment="Top" Width="145" Height="22" IsEnabled="True" Background="White" Canvas.Left="37" Canvas.Top="115"/>
-        <DataGrid Height="383" Canvas.Left="414" Canvas.Top="10" HorizontalAlignment="Left" VerticalAlignment="Center" Width="371" SelectionChanged="DataGrid_SelectionChanged">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Width="30"/>
-                <DataGridTextColumn Header="MANUFACTURER" Width="120"/>
-                <DataGridTextColumn Header="NAME" Width="100"/>
-                <DataGridTextColumn Header="TRANSPORT DATE" Width="140"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <Label Content="Part name" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="37" Canvas.Top="89"/>
-        <Label Content="Manufacturer" HorizontalAlignment="Left" Margin="37,36,0,0" VerticalAlignment="Top"/>
-        <Label Content="Number of units" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="37" Canvas.Top="137"/>
-        <Label Content="Payment status" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="227" Canvas.Top="89"/>
-        <Label Content="Order comment" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="227" Canvas.Top="137"/>
-        <Label Content="Transport form" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="227" Canvas.Top="36"/>
-        <ComboBox x:Name="cmbManufacturer" DataContext="{Binding Manufacturer, Source={StaticResource mainvm}}" HorizontalAlignment="Left" Margin="37,62,0,0" VerticalAlignment="Top" Width="145" Height="22"/>
-        <Border BorderThickness="1" Height="237" Canvas.Left="14" Canvas.Top="36" Width="390" HorizontalAlignment="Left" VerticalAlignment="Center">
+        <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding PartName}" VerticalAlignment="Top" Width="145" Height="22" IsEnabled="True" Background="White" Canvas.Left="37" Canvas.Top="115"/>
+        <DataGrid x:Name="PartsSellerGrid" Height="383" Canvas.Left="414" Canvas.Top="10" HorizontalAlignment="Left" VerticalAlignment="Center" Width="383" ItemsSource="{Binding PartsSellersTable}" CanUserAddRows="False" CanUserResizeRows="False" CanUserDeleteRows="False"/>
+        <Label Content="Nazwa części" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="37" Canvas.Top="89"/>
+        <Label Content="Wydawca" HorizontalAlignment="Left" Margin="37,36,0,0" VerticalAlignment="Top"/>
+        <Label Content="Ilość" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="37" Canvas.Top="137"/>
+        <ComboBox x:Name="cmbManufacturer" HorizontalAlignment="Left" Margin="37,62,0,0" VerticalAlignment="Top" Width="145" Height="22" Text="{Binding Wydawca}" ItemsSource="{Binding Wydawcy}"/>
+        <Border BorderThickness="1" Height="237" Canvas.Left="14" Canvas.Top="36" Width="374" HorizontalAlignment="Left" VerticalAlignment="Center">
             <Border.BorderBrush>
                 <SolidColorBrush Color="Black" Opacity="0.5"/>
             </Border.BorderBrush>
         </Border>
-        <TextBox TextWrapping="Wrap" TextChanged="TextBox_TextChanged" Canvas.Left="37" Canvas.Top="163" HorizontalAlignment="Left" VerticalAlignment="Center" Width="145" Height="22"/>
-        <TextBox TextWrapping="Wrap" TextChanged="TextBox_TextChanged" Canvas.Left="227" Canvas.Top="163" HorizontalAlignment="Left" VerticalAlignment="Center" Width="145" Height="22"/>
-        <TextBox TextWrapping="Wrap" TextChanged="TextBox_TextChanged" Canvas.Left="227" Canvas.Top="115" HorizontalAlignment="Left" VerticalAlignment="Top" Width="145" Height="22"/>
-        <TextBox TextWrapping="Wrap" TextChanged="TextBox_TextChanged" Canvas.Left="227" Canvas.Top="62" HorizontalAlignment="Left" VerticalAlignment="Top" Width="145" Height="22"/>
-        <Label Content="Order panel" FontSize="12" HorizontalAlignment="Left" Margin="171,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBox TextWrapping="Wrap" Canvas.Left="37" Canvas.Top="163" HorizontalAlignment="Left" VerticalAlignment="Center" Width="145" Height="22" Text="{Binding Qty}"/>
+        <Label Content="Panel zamówienia" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Canvas.Left="153" Canvas.Top="10"/>
         <Border BorderThickness="1" Height="72" Canvas.Left="14" Canvas.Top="321" Width="390" HorizontalAlignment="Center" VerticalAlignment="Top">
             <Border.BorderBrush>
                 <SolidColorBrush Color="Black" Opacity="0.5"/>
             </Border.BorderBrush>
         </Border>
-        <Button x:Name="btnLogout" Content="Logout" Height="33" Width="69" RenderTransformOrigin="0.047,0.295" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnLogout_Click" Canvas.Left="319" Canvas.Top="345"/>
-        <Label Content="Management panel" FontSize="12" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="30" Canvas.Top="290"/>
-        <TextBox Canvas.Left="29" TextWrapping="Wrap"  x:Name="tbUserName" Text="{Binding ScreenVal}" Canvas.Top="358" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top" Background ="LightGray" IsEnabled="False"/>
-        <Label Content="User" Canvas.Left="72" Canvas.Top="332" HorizontalAlignment="Left" VerticalAlignment="Top" Width="34"/>
-        <Label Content="Role" Canvas.Left="218" Canvas.Top="332" HorizontalAlignment="Left" VerticalAlignment="Top" Width="38" RenderTransformOrigin="0.481,0.515"/>
-        <TextBox Canvas.Left="172" TextWrapping="Wrap" Text="{Binding ScreenVal}" Canvas.Top="358" Width="127" HorizontalAlignment="Left" VerticalAlignment="Center" Background="LightGray" IsEnabled="False"/>
-        <Button Content= "Add part" Canvas.Left="258" Canvas.Top="217" Height="31" Width="82" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <DatePicker x:Name="TransportDate" Canvas.Left="37" Canvas.Top="224" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Button x:Name="btnLogout" Content="Wyloguj" Height="33" Width="69" RenderTransformOrigin="0.047,0.295" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="319" Canvas.Top="345">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Click">
+                    <i:CallMethodAction MethodName="Open" TargetObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Button>
+        <Label Content="Panel zarządzania" FontSize="12" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="30" Canvas.Top="290"/>
+        <TextBox Canvas.Left="29" TextWrapping="Wrap"  x:Name="tbUserName" Text="{Binding UserLogged}" Canvas.Top="358" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top" Background ="LightGray" IsEnabled="True" IsReadOnly="True"/>
+        <Label Content="Użytkownik" Canvas.Left="54" Canvas.Top="332" HorizontalAlignment="Left" VerticalAlignment="Center" Width="75"/>
+        <Label Content="Rola:" Canvas.Left="216" Canvas.Top="332" HorizontalAlignment="Left" VerticalAlignment="Top" Width="38" RenderTransformOrigin="0.481,0.515"/>
+        <Button Content= "Dodaj część" Canvas.Left="258" Canvas.Top="217" Height="31" Width="82" HorizontalAlignment="Left" VerticalAlignment="Center" Command="{Binding AddPartCommand}"/>
+        <TextBox Canvas.Left="209" TextWrapping="Wrap" Text="{Binding Price}" Canvas.Top="62" Width="145" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top"/>
+        <TextBox Canvas.Left="209" TextWrapping="Wrap" Text="{Binding ProductKey}" Canvas.Top="115" Width="145" HorizontalAlignment="Left" VerticalAlignment="Center" Height="22"/>
+        <Label Content="Cena" Canvas.Left="209" Canvas.Top="36"/>
+        <Label Content="Klucz produktu" Canvas.Left="209" Canvas.Top="89"/>
+        <TextBox Canvas.Left="175" TextWrapping="Wrap" Text="{Binding UserRole}" Canvas.Top="357" Width="120" HorizontalAlignment="Center" Height="19" VerticalAlignment="Center" Background="LightGray" IsReadOnly="True"/>
 
     </Canvas>
 </Window>

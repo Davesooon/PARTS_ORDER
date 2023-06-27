@@ -1,18 +1,27 @@
-﻿using PARTS_ORDER.Database;
+﻿using PARTS_ORDER.Commands;
+using PARTS_ORDER.Database;
+using PARTS_ORDER.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Channels;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Xml.Linq;
 
 namespace PARTS_ORDER.ViewModel
 {
     public class LoginViewModel : INotifyPropertyChanged
     {
-        private PARTS_ORDER_DB _dbContext;
         public event PropertyChangedEventHandler? PropertyChanged;
+        public ICommand btnLoginCommand { get; set; }
+        public static bool isAdmin = false;
+        public static string user { get; set; }
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
@@ -21,6 +30,8 @@ namespace PARTS_ORDER.ViewModel
 
         public LoginViewModel()
         {
+            LoginVisibility = true;
+            btnLoginCommand = new RelayCommand(o => LoginClick("btnLogin"));
         }
 
         private string _tbUserText;
@@ -30,7 +41,7 @@ namespace PARTS_ORDER.ViewModel
             set
             {
                 _tbUserText = value;
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(TextBoxUserText));
             }
         }
 
@@ -41,10 +52,64 @@ namespace PARTS_ORDER.ViewModel
             set
             {
                 _tbPassText = value;
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(TextBoxPassText));
             }
         }
 
+        private bool _loginVisibility;
+        public bool LoginVisibility
+        {
+            get { return _loginVisibility; }
+            set 
+            {
+                _loginVisibility = value;
+                OnPropertyChanged(nameof(LoginVisibility));
+            }
+        }
 
+        public string Password { private get; set; }
+
+        private void LoginClick(object sender)
+        {
+            if (!string.IsNullOrEmpty(_tbUserText) || !string.IsNullOrEmpty(_tbPassText))
+            {
+                try
+                {
+                    _tbUserText = _tbUserText.ToUpper();
+                    using (var ctx = new DatabaseInitializer())
+                    {
+                        bool exists = ctx.loginUsers.Any(x => x.LOGIN == _tbUserText);
+
+                        if (exists)
+                        {
+                            var result = ctx.loginUsers.FirstOrDefault(x => x.LOGIN == _tbUserText && x.HASŁO == _tbPassText);
+
+                            if (result != null)
+                            {
+                                if (result.ADMIN == "YES") isAdmin = true;
+                                else isAdmin = false;
+                                user = TextBoxUserText;
+                                MainWindow mainWindow = new MainWindow();
+                                mainWindow.Show();
+                                LoginVisibility = false;
+                            }
+                            else
+                            {
+                                MessageBox.Show("Nie udało się zalogować, spróbuj ponownie!");
+                            }
+                        }
+                        else MessageBox.Show("Podany użytkownik nie istnieje!");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Pole użytkownika lub hasło nie może być puste!");
+            }
+        }
     }
 }

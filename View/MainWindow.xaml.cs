@@ -1,4 +1,5 @@
 ﻿using PARTS_ORDER.Database;
+using PARTS_ORDER.View;
 using PARTS_ORDER.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -22,37 +23,10 @@ namespace PARTS_ORDER
     /// </summary>
     public partial class MainWindow : Window
     {
-        private DatabaseFunctions _dbFunctions;
         public MainWindow()
         {
             InitializeComponent();
             DataContext = new MainViewModel();
-            Loaded += Load;
-        }
-
-        private void Load(object sender, RoutedEventArgs e)
-        {
-            //cmbManufacturer.Items.Add(_dbFunctions.GetManufacturers());
-        }
-
-        private void btnLogout_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void tbUserName_Copy_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
         }
     }
 }

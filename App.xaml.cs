@@ -30,11 +30,18 @@ namespace PARTS_ORDER
                 .ConfigureServices(services =>
                 {
                     services.AddScoped<IDatabaseInitializer, DatabaseInitializer>();
-                    services.AddScoped<IDatabaseFunctions, DatabaseFunctions>();
                     services.AddTransient<Login>();
                     services.AddSingleton<MainWindow>();
                 })
                 .Build();
+
+            var scopedFactory = host.Services.GetService<IServiceScopeFactory>();
+
+            using (var scope = scopedFactory.CreateScope())
+            {
+                var service = scope.ServiceProvider.GetService<IDatabaseInitializer>();
+                await service.SeedData();
+            }
 
             await host.StartAsync();
         }
