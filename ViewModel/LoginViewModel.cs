@@ -1,5 +1,6 @@
 ﻿using PARTS_ORDER.Commands;
 using PARTS_ORDER.Database;
+using PARTS_ORDER.Models;
 using PARTS_ORDER.View;
 using System;
 using System.Collections.Generic;
@@ -20,8 +21,6 @@ namespace PARTS_ORDER.ViewModel
     {
         public event PropertyChangedEventHandler? PropertyChanged;
         public ICommand btnLoginCommand { get; set; }
-        public static bool isAdmin = false;
-        public static string user { get; set; }
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
@@ -86,9 +85,9 @@ namespace PARTS_ORDER.ViewModel
 
                             if (result != null)
                             {
-                                if (result.ADMIN == "YES") isAdmin = true;
-                                else isAdmin = false;
-                                user = TextBoxUserText;
+                                if (result.ADMIN == "YES") LoginSharedData.Admin = true;
+                                else LoginSharedData.Admin = false;
+                                LoginSharedData.User = TextBoxUserText;
                                 MainWindow mainWindow = new MainWindow();
                                 mainWindow.Show();
                                 LoginVisibility = false;

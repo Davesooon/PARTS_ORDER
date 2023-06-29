@@ -1,0 +1,23 @@
+﻿<Window x:Class="PARTS_ORDER.View.Editor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PARTS_ORDER.View"
+        mc:Ignorable="d"
+        Title="Edytor" Height="250" Width="400">
+    <Grid>
+        <TextBox HorizontalAlignment="Left" Margin="29,39,0,0" TextWrapping="Wrap" Text="{Binding EdWydawca}" VerticalAlignment="Top" Width="145" Height="22"/>
+        <TextBox HorizontalAlignment="Left" Margin="213,39,0,0" TextWrapping="Wrap" Text="{Binding EdNazwa}" VerticalAlignment="Top" Width="145" Height="22"/>
+        <TextBox HorizontalAlignment="Left" Margin="29,104,0,0" TextWrapping="Wrap" Text="{Binding EdKluczProduktu}" VerticalAlignment="Top" Width="145" Height="22"/>
+        <TextBox HorizontalAlignment="Left" Margin="213,104,0,0" TextWrapping="Wrap" Text="{Binding EdKoszt}" VerticalAlignment="Top" Width="145" Height="22"/>
+        <TextBox HorizontalAlignment="Left" Margin="29,165,0,0" TextWrapping="Wrap" Text="{Binding EdIlosc}" VerticalAlignment="Top" Width="145" Height="22"/>
+        <Button Content="Edytuj" HorizontalAlignment="Left" Margin="213,148,0,0" VerticalAlignment="Top" Height="46" Width="145" Command="{Binding EditCommand}"/>
+        <Label Content="Wydawca" HorizontalAlignment="Left" Margin="29,13,0,0" VerticalAlignment="Top"/>
+        <Label Content="Nazwa" HorizontalAlignment="Left" Margin="213,13,0,0" VerticalAlignment="Top"/>
+        <Label Content="Klucz produktu" HorizontalAlignment="Left" Margin="29,78,0,0" VerticalAlignment="Top"/>
+        <Label Content="Koszt" HorizontalAlignment="Left" Margin="213,78,0,0" VerticalAlignment="Top"/>
+        <Label Content="Ilość" HorizontalAlignment="Left" Margin="29,139,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

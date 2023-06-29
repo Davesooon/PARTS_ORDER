@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\USER\source\repos\PARTS_ORDER\App.xaml
-3-340407688
+4-1982560453
 
-221502243089
+26-266695826
 241909098537
-Components\BindablePasswordBox.xaml;View\Login.xaml;View\MainWindow.xaml;
+Components\BindablePasswordBox.xaml;View\Editor.xaml;View\Login.xaml;View\MainWindow.xaml;
 
 False
 

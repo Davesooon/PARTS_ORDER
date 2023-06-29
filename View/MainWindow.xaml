@@ -13,20 +13,15 @@
             <i:CallMethodAction MethodName="Close" TargetObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    <Window.Resources>
-        <custns:MainViewModel
-            x:Key="mainvm"/>
-        <custns:LoginViewModel
-            x:Key="loginvm"/>
-    </Window.Resources>
+
     <Canvas>
         <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding PartName}" VerticalAlignment="Top" Width="145" Height="22" IsEnabled="True" Background="White" Canvas.Left="37" Canvas.Top="115"/>
-        <DataGrid x:Name="PartsSellerGrid" Height="383" Canvas.Left="414" Canvas.Top="10" HorizontalAlignment="Left" VerticalAlignment="Center" Width="383" ItemsSource="{Binding PartsSellersTable}" CanUserAddRows="False" CanUserResizeRows="False" CanUserDeleteRows="False"/>
+        <DataGrid x:Name="PartsSellerGrid" Height="331" Canvas.Left="414" Canvas.Top="10" HorizontalAlignment="Center" VerticalAlignment="Top" Width="383" ItemsSource="{Binding PartsSellersTable}" CanUserAddRows="False" CanUserResizeRows="False" CanUserDeleteRows="False" SelectedItem="{Binding SelectedRows, Mode=TwoWay}" CanUserReorderColumns="False" CanUserSortColumns="False" CanUserResizeColumns="False" IsReadOnly="True"/>
         <Label Content="Nazwa części" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="37" Canvas.Top="89"/>
         <Label Content="Wydawca" HorizontalAlignment="Left" Margin="37,36,0,0" VerticalAlignment="Top"/>
         <Label Content="Ilość" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="37" Canvas.Top="137"/>
         <ComboBox x:Name="cmbManufacturer" HorizontalAlignment="Left" Margin="37,62,0,0" VerticalAlignment="Top" Width="145" Height="22" Text="{Binding Wydawca}" ItemsSource="{Binding Wydawcy}"/>
-        <Border BorderThickness="1" Height="237" Canvas.Left="14" Canvas.Top="36" Width="374" HorizontalAlignment="Left" VerticalAlignment="Center">
+        <Border BorderThickness="1" Height="187" Canvas.Left="14" Canvas.Top="36" Width="374" HorizontalAlignment="Center" VerticalAlignment="Top">
             <Border.BorderBrush>
                 <SolidColorBrush Color="Black" Opacity="0.5"/>
             </Border.BorderBrush>
@@ -41,7 +36,7 @@
         <Button x:Name="btnLogout" Content="Wyloguj" Height="33" Width="69" RenderTransformOrigin="0.047,0.295" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="319" Canvas.Top="345">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="Click">
-                    <i:CallMethodAction MethodName="Open" TargetObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"/>
+                    <i:CallMethodAction MethodName="Close" TargetObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </Button>
@@ -49,12 +44,15 @@
         <TextBox Canvas.Left="29" TextWrapping="Wrap"  x:Name="tbUserName" Text="{Binding UserLogged}" Canvas.Top="358" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top" Background ="LightGray" IsEnabled="True" IsReadOnly="True"/>
         <Label Content="Użytkownik" Canvas.Left="54" Canvas.Top="332" HorizontalAlignment="Left" VerticalAlignment="Center" Width="75"/>
         <Label Content="Rola:" Canvas.Left="216" Canvas.Top="332" HorizontalAlignment="Left" VerticalAlignment="Top" Width="38" RenderTransformOrigin="0.481,0.515"/>
-        <Button Content= "Dodaj część" Canvas.Left="258" Canvas.Top="217" Height="31" Width="82" HorizontalAlignment="Left" VerticalAlignment="Center" Command="{Binding AddPartCommand}"/>
+        <Button Content= "Dodaj" Canvas.Left="209" Canvas.Top="154" Height="32" Width="145" HorizontalAlignment="Left" VerticalAlignment="Center" Command="{Binding AddPartCommand}"/>
         <TextBox Canvas.Left="209" TextWrapping="Wrap" Text="{Binding Price}" Canvas.Top="62" Width="145" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top"/>
         <TextBox Canvas.Left="209" TextWrapping="Wrap" Text="{Binding ProductKey}" Canvas.Top="115" Width="145" HorizontalAlignment="Left" VerticalAlignment="Center" Height="22"/>
         <Label Content="Cena" Canvas.Left="209" Canvas.Top="36"/>
         <Label Content="Klucz produktu" Canvas.Left="209" Canvas.Top="89"/>
         <TextBox Canvas.Left="175" TextWrapping="Wrap" Text="{Binding UserRole}" Canvas.Top="357" Width="120" HorizontalAlignment="Center" Height="19" VerticalAlignment="Center" Background="LightGray" IsReadOnly="True"/>
+        <Button Content="Usuń wybrane" Canvas.Left="417" Canvas.Top="361" HorizontalAlignment="Left" VerticalAlignment="Center" Width="115" Height="32" Command="{Binding DeleteRowsCommand}"/>
+        <Button Content="Edytuj wiersz" Canvas.Left="548" Canvas.Top="361" Height="32" Width="115" HorizontalAlignment="Left" VerticalAlignment="Center" Command="{Binding EditRowCommand}"/>
+        <Button Content="Odśwież" Canvas.Left="682" Canvas.Top="362" Height="31" Width="115" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding RefreshGridCommand}"/>
 
     </Canvas>
 </Window>

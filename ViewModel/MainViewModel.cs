@@ -21,6 +21,9 @@ namespace PARTS_ORDER.ViewModel
     public class MainViewModel : INotifyPropertyChanged
     {
         public ICommand AddPartCommand { get; set; }
+        public ICommand DeleteRowsCommand { get; set; }
+        public ICommand EditRowCommand { get; set; }
+        public ICommand RefreshGridCommand { get; set; }
         public event PropertyChangedEventHandler? PropertyChanged;
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -30,9 +33,12 @@ namespace PARTS_ORDER.ViewModel
 
         public MainViewModel()
         {
-            UserLogged = LoginViewModel.user;
-            UserRole = LoginViewModel.isAdmin ? "Admin" : "Użytkownik";
+            UserLogged = LoginSharedData.User;
+            UserRole = LoginSharedData.Admin ? "Admin" : "Użytkownik";
             AddPartCommand = new RelayCommand(o => AddNewPart("AddNewPart"));
+            DeleteRowsCommand = new RelayCommand(o => DeleteSelectedRows("DeleteSelectedRows"));
+            EditRowCommand = new RelayCommand(o => EditRow("EditRow"));
+            RefreshGridCommand = new RelayCommand(o => RefreshDataGrid());
             RefreshDataGrid();
         }
 
@@ -135,6 +141,17 @@ namespace PARTS_ORDER.ViewModel
             }
         }
 
+        private PARTS_SELLER_DTO selectedRows;
+        public PARTS_SELLER_DTO SelectedRows
+        {
+            get { return selectedRows; }
+            set
+            {
+                selectedRows = value;
+                OnPropertyChanged(nameof(SelectedRows));
+            }
+        }
+
         private void AddNewPart(object sender)
         {
             DatabaseFunctions.AddPart(new CHECK_PARTS
@@ -156,6 +173,33 @@ namespace PARTS_ORDER.ViewModel
         {
             Wydawcy = DatabaseFunctions.GetManufacturers();
             PartsSellersTable = DatabaseFunctions.GetTable();
+        }
+
+        private void DeleteSelectedRows(object sender)
+        {
+            if (SelectedRows != null)
+            {
+                DatabaseFunctions.DeleteRows(SelectedRows.WYDAWCA, SelectedRows.ID_CZĘŚCI, SelectedRows.ID);
+
+                RefreshDataGrid();
+            }
+        }
+
+        private void EditRow(object sender)
+        {
+            if (SelectedRows != null)
+            {
+                SharedDataStore.Id = SelectedRows.ID;
+                SharedDataStore.Wydawca = SelectedRows.WYDAWCA;
+                SharedDataStore.Nazwa = SelectedRows.NAZWA;
+                SharedDataStore.PartId = SelectedRows.ID_CZĘŚCI;
+                SharedDataStore.KluczProduktu = SelectedRows.KLUCZ_PRODUKTU;
+                SharedDataStore.Koszt = SelectedRows.KOSZT;
+                SharedDataStore.Ilosc = SelectedRows.ILOŚĆ;
+
+                Editor editor = new Editor();
+                editor.Show();
+            }
         }
     }
 }
